@@ -1,5 +1,5 @@
 import { AddressModel } from '@/data/models';
 
-export interface CreateAddress {
+export interface CreateAddressRepository {
   save(address: AddressModel): Promise<AddressModel>;
 }

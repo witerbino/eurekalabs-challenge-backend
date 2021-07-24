@@ -1,5 +1,5 @@
 import { Address } from '@/domain/entities';
 
-export interface CreateAddress {
+export interface CreateAddressUseCase {
   save(address: Address): Promise<void>;
 }
