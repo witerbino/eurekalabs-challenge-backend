@@ -1,7 +1,6 @@
-export class Address {
-  constructor(
-    bairro: string,
-    municipio: string,
-    logradouro: string,
-  ) {}
+export type Address = {
+  cep: string,
+  bairro: string,
+  municipio: string,
+  logradouro: string,
 }

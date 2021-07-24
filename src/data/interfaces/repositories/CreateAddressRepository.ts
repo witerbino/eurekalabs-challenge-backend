@@ -1,5 +1,5 @@
 import { AddressModel } from '@/data/models';
 
 export interface CreateAddressRepository {
-  save(address: AddressModel): Promise<AddressModel>;
+  save(address: AddressModel): Promise<void>;
 }
