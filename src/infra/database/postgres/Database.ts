@@ -8,12 +8,13 @@ export class Database {
   public static getConnection(): Client {
     if (!this.connection) {
       this.connection = new Client({
-        host: 'localhost',
-        port: 5334,
-        user: 'docker',
-        password: 'docker',
-        database: 'docker-postgres',
+        host: process.env.DB_HOST,
+        port: Number(process.env.DB_PORT),
+        user: process.env.DB_USER,
+        password: process.env.DB_PASS,
+        database: process.env.DB_BASE,
       });
+      this.connection.connect();
     }
     return this.connection;
   }

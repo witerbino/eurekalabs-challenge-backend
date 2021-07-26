@@ -12,9 +12,15 @@ export class AddressRepository implements CreateAddressRepository, FindAddressBy
   }
 
   async load(cep: string): Promise<AddressModel> {
-    return await this.db.query(`
-      SELECT * FROM addresses WHERE cep = $1
-    `, [cep])[0];
+    const { rows } = await this.db.query(`
+      SELECT 
+        cep, bairro, municipio, logradouro
+      FROM 
+        addresses 
+      WHERE 
+        REPLACE(cep, '-', '') = $1 LIMIT 1
+    `, [cep]);
+    return rows[0];
   }
 
   async save(address: AddressModel): Promise<void> {
