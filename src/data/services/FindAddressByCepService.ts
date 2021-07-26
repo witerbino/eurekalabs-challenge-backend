@@ -7,7 +7,6 @@ import { CepProvider } from '@/data/interfaces/providers';
 import { CreateAddressRepository, FindAddressByCepRepository } from '@/data/interfaces/repositories';
 
 export class FindAddressByCepService implements FindAddressByCepUseCase {
-
   constructor(
     private cepProvider: CepProvider,
     private addressRepository: CreateAddressRepository & FindAddressByCepRepository
@@ -16,14 +15,14 @@ export class FindAddressByCepService implements FindAddressByCepUseCase {
   async load(cep: string): Promise<AddressModel> {
     let address: AddressModel;
 
-    if (!cep.match('[0-9]{8}')) throw new CepInvalid(cep);
+    if (cep.length !== 8) throw new CepInvalid(cep);
 
     address = await this.loadAddressFromDb(cep);
       
     if (!address) {
       address = await this.loadAddressFromApi(cep);
 
-      if (!address) throw new CepNotFound(cep);
+      if (address === null) throw new CepNotFound(cep);
       
       await this.saveAddressInDb(address);
     }
@@ -39,6 +38,6 @@ export class FindAddressByCepService implements FindAddressByCepUseCase {
   }
 
   private async loadAddressFromApi(cep: string): Promise<AddressModel> {
-    return this.cepProvider.getAddressByCep(cep);
+    return await this.cepProvider.getAddressByCep(cep);
   }
 }
