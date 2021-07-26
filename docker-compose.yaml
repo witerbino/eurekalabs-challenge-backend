@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  app-backend:
+    image: node:15
+    container_name: app-backend
+    command: bash -c "npm install && npm start"
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports: 
+      - ${APP_PORT}:3000
+    links: 
+      - app-database
+    depends_on: 
+      - app-database
+      
+  app-database:
+    image: postgres
+    container_name: app-database
+    ports:
+      - ${DB_PORT}:5432
+    environment: 
+      - POSTGRES_DB=${DB_BASE}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+    volumes: 
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./docker/postgres:/var/lib/postgresql/data
+
