@@ -13,11 +13,11 @@ export class ViaCepProvider implements CepProvider {
     });
   }
 
-  async getAddressByCep(cep: string): Promise<AddressModel | undefined> {
-    const { status, data } = await this.http.get(`${cep}/json`);
-    return status !== 400 
+  async getAddressByCep(cep: string): Promise<AddressModel | null> {
+    const { data, status } = await this.http.get(`${cep}/json`);
+    return data.erro !== true && status !== 400
       ? this.toMapper(data) 
-      : undefined;
+      : null;
   }
 
   private toMapper(data: any): AddressModel {
