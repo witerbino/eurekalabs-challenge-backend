@@ -1,6 +1,7 @@
 import express, { Express, json } from 'express';
 
 import routers from '@/main/routes';
+import cors from 'cors';
 
 export class App {
   private app: Express;
@@ -16,6 +17,7 @@ export class App {
   }
 
   private setMiddlewares(): void {
+    this.app.use(cors());
     this.app.use(json());
   }
 
