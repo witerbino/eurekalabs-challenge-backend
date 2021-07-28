@@ -34,7 +34,7 @@
 2. Clone esse repositório `git clone https://github.com/witerbino/eurekalabs-challenge-backend.git`
 3. Entre na pasta do projeto `cd eurekalabs-challenge-backend`
 4. Execute o comando `docker-compose up`
-5. Executando esse comando ele já ira subir o container do banco e da aplicação, também irá criar a tabela **address**
+5. Executando esse comando ele já ira subir o container do banco e da aplicação, também irá criar a tabela **addresses**
 6. O projeto vai estar rodando no link `http://localhost:4000/api/address/{{ cep }}`
 
 # Licença
