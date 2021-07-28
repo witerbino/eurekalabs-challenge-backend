@@ -6,7 +6,7 @@ import { App } from '@/main/config/express';
 const app = new App();
 
 app.init().listen(process.env.APP_PORT, () => {
-  console.log('App start in port 3000');
+  console.log(`App start in port ${process.env.APP_PORT}`);
 });
 
 

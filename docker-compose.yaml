@@ -9,7 +9,7 @@ services:
     volumes:
       - .:/app
     ports: 
-      - ${APP_PORT}:3000
+      - 4000:4000
     links: 
       - app-database
     depends_on: 

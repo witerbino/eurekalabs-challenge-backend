@@ -5,8 +5,8 @@ import { ViaCepProvider } from '@/infra/providers';
 
 export const factoryFindAddressByCepController = (): FindAddressByCepController => {
   const repository = new AddressRepository();
-  const provider = new ViaCepProvider();
-  const service = new FindAddressByCepService(provider, repository);
+  const provider   = new ViaCepProvider();
+  const service    = new FindAddressByCepService(provider, repository);
   const controller = new FindAddressByCepController(service);
 
   return controller;
